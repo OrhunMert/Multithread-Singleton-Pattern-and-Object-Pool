@@ -22,21 +22,21 @@ public abstract class PoolManager<T> {
 
     public PoolManager(final int minObjects)
     {
-        // initialize pool
-
-        initialize(minObjects);
+        initialize(minObjects);// initialize pool
 
     }
 
     public PoolManager(final int minObjects, final int maxObjects, final long validationInterval) {
-        // initialize pool
-        initialize(minObjects);
+
+        initialize(minObjects);// initialize pool
+
         // check pool conditions in a separate thread
         executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleWithFixedDelay(new Runnable()  // annonymous class
+        executorService.scheduleWithFixedDelay(new Runnable()
         {
             @Override
             public void run() {
+
                 int size = pool.size();
 
                 if (size < minObjects) {
@@ -55,19 +55,20 @@ public abstract class PoolManager<T> {
     }
 
     public T borrowObject() {
-        /*
 
+        /*
         pool = [10,7,5]
         print(pool.poll) --> 10
         new pool = [7,5]
-
          */
-
+        //System.out.println("Pool Size:"+findLength());
         T object;
         if ((object = pool.poll()) == null)
         {
             object = createObject();
+
         }
+
         return object;
     }
 
@@ -87,11 +88,16 @@ public abstract class PoolManager<T> {
         }
     }
 
+    public int findLength(){
+        return pool.size();
+    }
+
     private void initialize(final int minObjects)  {
         pool = new ConcurrentLinkedQueue<T>();
         for (int i = 0; i < minObjects; i++) {
             pool.add(createObject());
         }
     }
+
 
 }

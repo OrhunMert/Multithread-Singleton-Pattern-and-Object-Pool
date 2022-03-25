@@ -33,24 +33,4 @@ public class Login {
         return instance;
     }
 
-
-    //private long processNo;
-
-    /*
-    public Login(long processNo){
-
-        this.processNo = processNo;
-        System.out.println("Object was created and process no: " + processNo);
-
-    }
-
-
-
-
-    public long getProcessNo(){
-
-        return this.processNo;
-    }
-    */
-
 }

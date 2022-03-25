@@ -1,0 +1,35 @@
+@startuml
+abstract class ObjectPool.PoolManager {
+- ConcurrentLinkedQueue<T> pool
+- ScheduledExecutorService executorService
+# {abstract}T createObject()
++ T borrowObject()
++ void returnObject(T)
++ void shutdown()
++ ınt findLength()
+- void initialize(ınt)
+}
+class User.Login {
+- {static} Login instance
+- {static} Object lock_obj
++ {static} Login getInstance()
+}
+class demo.MainDemo {
+- PoolManager<Login> pool
+- {static} ınt ThreadNum
+- {static} ınt minObject
+- {static} ınt maxObject
++ void setUp()
++ void shutDownPool()
++ void DemoPoolManager()
++ {static} void main(String[])
+}
+class User.LoginThread {
+- PoolManager<Login> pool
+- ınt threadNo
++ void run()
+}
+
+
+java.lang.Thread <|-- User.LoginThread
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+
+class MainDemo
+class Login
+class LoginThread
+class Thread
+abstract class PoolManager
+abstract T
+
+
+LoginThread<|-- Thread
+
+class MainDemo{
+
+}
+class Login{
+
+}
+class LoginThread{
+
+}
+class Thread{
+
+}
+
+
+@enduml
